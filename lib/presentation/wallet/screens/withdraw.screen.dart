@@ -145,7 +145,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       ),
                       Gutter(),
                       GFIconButton(
-                        onPressed: () {},
+                        onPressed: () => _walletController.sendCode(),
                         icon: Icon(Icons.send, size: 24),
                         borderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
                         color: primaryColor,

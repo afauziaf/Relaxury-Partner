@@ -18,6 +18,11 @@ class ProfileApi extends ApiHelper {
           enableNotifier: enableNotifier,
         );
 
+  // Get Commission
+  Future<Response> getCommissionTree() async {
+    return await get('commission/get_tree');
+  }
+
   // Get Profile
   Future<Response> getProfileInfo() async {
     return await get('profile/info');

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:relaxury_partner/global/helpers/snackbar.helper.dart';
+import 'package:relaxury_partner/models/profile/commission_tree.model.dart';
 import 'package:relaxury_partner/models/profile/partner.model.dart';
 import '../api/auth.api.dart';
 import '../api/profile.api.dart';
@@ -24,10 +25,21 @@ class ProfileController extends GetxController {
   List<BonusModel>? bonusList = [];
   UserPartnerModel? userPartnerModel;
   PartnerModel partnerModel = new PartnerModel();
+  CommissionTree? commissionTree;
 
   List<GenderModel> genderList = [];
   List<ServiceModel> serviceList = [];
   List<ProvinceModel> provinceList = [];
+
+  getCommissionTree() async {
+    Response response = await ProfileApi().getCommissionTree();
+
+    commissionTree = CommissionTree.fromJson(response.body['data']['tree']);
+
+    for (CommissionTree child in commissionTree!.children) {
+      print("Child: " + child.name);
+    }
+  }
 
   getProfileInfo() async {
     Response response = await ProfileApi().getProfileInfo();
@@ -38,6 +50,7 @@ class ProfileController extends GetxController {
 
     if (profileModel.isBuyPackageCommission == 1) {
       getCommission();
+      getCommissionTree();
     }
 
     if (profileModel.hasProduct == 1) {
@@ -50,7 +63,7 @@ class ProfileController extends GetxController {
   }
 
   editAvatar(File file) async {
-    Response response = await ProfileApi().updateAvatar(file: file);
+    Response response = await ProfileApi(enableLoader: true).updateAvatar(file: file);
 
     if (response.statusCode == 200) {
       AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Update avatar completed", status: AlertType.success);

@@ -49,7 +49,7 @@ class AuthController extends GetxController {
 
     if (response.statusCode == 200) {
       AuthApi().sendCodeWithEmail(email: email);
-      Get.offNamed(RouteName.accountVerification);
+      Get.offNamed(RouteName.accountVerification, arguments: email);
     }
   }
 

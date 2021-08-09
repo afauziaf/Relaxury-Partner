@@ -100,16 +100,39 @@ class _BonusTabState extends State<BonusTab> {
                                           height: 40,
                                           child: SvgPicture.asset('assets/icons/comission.svg'),
                                         ),
-                                        title: Text(
-                                          profileController.bonusList![index].name,
-                                          style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                                        title: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                profileController.bonusList![index].name,
+                                                maxLines: 1,
+                                                style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                                              ),
+                                            ),
+                                            Gutter(),
+                                            Text(
+                                              DateFormat('dd/MM/yyyy').format(profileController.bonusList![index].createdAt),
+                                              maxLines: 1,
+                                              style: Get.textTheme.bodyText2!.copyWith(color: Colors.grey),
+                                            )
+                                          ],
                                         ),
-                                        subtitle: Text(
-                                          DateFormat('dd/MM/yyyy').format(profileController.bonusList![index].createdAt),
-                                          maxLines: 1,
-                                          style: Get.textTheme.bodyText2!.copyWith(color: Colors.grey),
+                                        subtitle: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                profileController.bonusList![index].message,
+                                                maxLines: 1,
+                                                style: Get.textTheme.bodyText2!.copyWith(color: Colors.grey),
+                                              ),
+                                            ),
+                                            Gutter(),
+                                            Text(
+                                              profileController.bonusList![index].amount.toStringAsFixed(2) + " \$",
+                                              style: Get.textTheme.bodyText1!.copyWith(color: primaryColor, fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
                                         ),
-                                        trailing: Text(profileController.bonusList![index].amount.toStringAsFixed(2) + " \$", style: Get.textTheme.bodyText1!.copyWith(color: primaryColor, fontWeight: FontWeight.bold)),
                                       ),
                                     ),
                                     separatorBuilder: (context, index) => Gutter(),

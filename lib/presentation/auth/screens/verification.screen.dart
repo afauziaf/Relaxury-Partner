@@ -23,6 +23,17 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
   TextEditingController _emailInputController = new TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    print(Get.arguments.toString());
+
+    if (Get.arguments != null) {
+      _emailInputController.text = Get.arguments;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AuthLayout(
         title: "Account Verification",

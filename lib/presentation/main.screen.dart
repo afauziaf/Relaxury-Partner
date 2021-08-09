@@ -61,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(onPressed: () => _onBottomNavigationTap(0), icon: Icon(Icons.account_balance_wallet, color: _changeBottomNavitionIconColor(0))),
-                    IconButton(onPressed: () => _onBottomNavigationTap(1), icon: Icon(Icons.explore, color: _changeBottomNavitionIconColor(1))),
+                    IconButton(onPressed: () => _onBottomNavigationTap(1), icon: Icon(Icons.notifications, color: _changeBottomNavitionIconColor(1))),
                     IconButton(onPressed: null, icon: Icon(Icons.explore, color: Colors.transparent)),
                     IconButton(onPressed: () => _onBottomNavigationTap(2), icon: Icon(Icons.forum_rounded, color: _changeBottomNavitionIconColor(2))),
                     IconButton(

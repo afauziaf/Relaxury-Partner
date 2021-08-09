@@ -73,14 +73,10 @@ class WalletController extends GetxController {
   // Withdraw
   withdraw({required String outputAddress, required num amount, required String code}) async {
     Response response = await WalletApi(enableLoader: true, enableNotifier: true).withdraw(outputAddress: outputAddress, amount: amount, code: code);
-
-    if (response.statusCode == 200) {
-      Get.back();
-    }
   }
 
   // Send Code
-  sendCode() async => AuthApi().sendCode();
+  sendCode() async => AuthApi(enableLoader: true, enableNotifier: true).sendCode();
 
   @override
   void onInit() {

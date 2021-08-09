@@ -10,6 +10,7 @@ import '../../../global/themes/layout.theme.dart';
 import '../components/profile_header_card.dart';
 import 'comission_package_list.screen.dart';
 import 'commission.screen.dart';
+import 'order_history.controller.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({
@@ -100,6 +101,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               },
                               leading: SizedBox(height: 36, width: 36, child: SvgPicture.asset('assets/icons/comission.svg')),
                               title: Text("Commission", style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+
+                          // OrderHistoryScreen
+                          Card(
+                            child: ListTile(
+                              onTap: () {
+                                Get.to(() => OrderHistoryScreen());
+                              },
+                              leading: SizedBox(height: 36, width: 36, child: SvgPicture.asset('assets/icons/pages/order_history.svg')),
+                              title: Text("Order History", style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold)),
                             ),
                           ),
 

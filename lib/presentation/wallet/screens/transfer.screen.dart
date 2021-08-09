@@ -122,7 +122,7 @@ class _TransferScreenState extends State<TransferScreen> {
                       ),
                       Gutter(),
                       GFIconButton(
-                        onPressed: () => _walletController.sendCode()(),
+                        onPressed: () => _walletController.sendCode(),
                         icon: Icon(Icons.send, size: 24),
                         borderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
                         color: primaryColor,
