@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:relaxury_partner/global/layouts/defauft.layout.dart';
-import 'package:relaxury_partner/presentation/order/screens/order.screen.dart';
-import 'package:relaxury_partner/presentation/profile/screens/notification.screen.dart';
+import '../global/layouts/defauft.layout.dart';
+import 'order/screens/order.screen.dart';
+import 'profile/screens/notification.screen.dart';
 import '../controllers/main.controller.dart';
 import '../controllers/profile.controller.dart';
 import '../global/helpers/storage.dart';

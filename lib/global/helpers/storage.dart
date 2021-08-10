@@ -1,8 +1,8 @@
 import 'package:get_storage/get_storage.dart';
 
 class Storage {
-  final GetStorage _storage = GetStorage('Relaxury');
-  final String _path = 'Relaxury/';
+  final GetStorage _storage = GetStorage('RelaxuryPartner');
+  final String _path = 'RelaxuryPartner/';
   final String _name;
 
   Storage(this._name);

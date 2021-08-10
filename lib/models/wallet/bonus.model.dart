@@ -21,7 +21,7 @@ class BonusModel {
 
   int id;
   String name;
-  double amount;
+  num amount;
   String message;
   String commissionType;
   int status;

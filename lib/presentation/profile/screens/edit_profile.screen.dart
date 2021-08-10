@@ -28,7 +28,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _nicknameInput.text = _profileController.profileModel.username ?? "";
     _phoneInput.text = _profileController.profileModel.phoneNumber ?? "";

@@ -6,9 +6,9 @@ class WalletModel {
     this.addressWallet,
   });
 
-  int? balance;
-  int? balanceAgency;
-  int? balanceCommission;
+  num? balance;
+  num? balanceAgency;
+  num? balanceCommission;
   String? addressWallet;
 
   factory WalletModel.fromJson(Map<String, dynamic> json) => WalletModel(

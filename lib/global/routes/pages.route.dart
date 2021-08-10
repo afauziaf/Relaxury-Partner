@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import '../../presentation/chat/screens/chat.screen.dart';
-import '../../presentation/order/screens/order.screen.dart';
-import 'name.route.dart';
+
 import '../../controllers/auth.controller.dart';
 import '../../controllers/chat.controller.dart';
 import '../../controllers/main.controller.dart';
@@ -14,16 +12,19 @@ import '../../presentation/auth/screens/login.screen.dart';
 import '../../presentation/auth/screens/register.screen.dart';
 import '../../presentation/auth/screens/reset_password.screen.dart';
 import '../../presentation/auth/screens/verification.screen.dart';
+import '../../presentation/chat/screens/chat.screen.dart';
 import '../../presentation/main.screen.dart';
-import '../../presentation/profile/screens/notification.screen.dart';
+import '../../presentation/order/screens/order.screen.dart';
 import '../../presentation/order/screens/order_details.screen.dart';
 import '../../presentation/order/screens/order_history.screen.dart';
+import '../../presentation/profile/screens/notification.screen.dart';
 import '../../presentation/profile/screens/profile.screen.dart';
 import '../../presentation/splash/splash.screen.dart';
 import '../../presentation/wallet/screens/convert.screen.dart';
 import '../../presentation/wallet/screens/transaction_history.screen.dart';
 import '../../presentation/wallet/screens/transfer.screen.dart';
 import '../../presentation/wallet/screens/withdraw.screen.dart';
+import 'name.route.dart';
 
 class RoutePage {
   static final GetPage unknowRoute = GetPage(name: RouteName.splash, page: () => SplashScreen(), binding: SplashBinding());

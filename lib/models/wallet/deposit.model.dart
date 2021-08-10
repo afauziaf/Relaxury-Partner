@@ -14,7 +14,7 @@ class DepositModel {
   dynamic symbol;
   int status;
   String txhash;
-  int amount;
+  num amount;
   DateTime createdAt;
 
   factory DepositModel.fromJson(Map<String, dynamic> json) => DepositModel(

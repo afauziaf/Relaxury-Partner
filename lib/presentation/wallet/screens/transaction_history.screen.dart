@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:relaxury_partner/global/themes/layout.theme.dart';
-import 'package:relaxury_partner/models/wallet/convert.dart';
-import 'package:relaxury_partner/models/wallet/deposit.model.dart';
-import 'package:relaxury_partner/models/wallet/transfer.model.dart';
-import 'package:relaxury_partner/models/wallet/withdraw.model.dart';
+import '../../../global/themes/layout.theme.dart';
+import '../../../models/wallet/convert.dart';
+import '../../../models/wallet/deposit.model.dart';
+import '../../../models/wallet/transfer.model.dart';
+import '../../../models/wallet/withdraw.model.dart';
 import '../../../controllers/wallet.controller.dart';
 import '../../../global/layouts/defauft.layout.dart';
 import '../../../models/wallet/transaction.model.dart';
@@ -34,6 +34,7 @@ class TransactionHistoryScreen extends StatelessWidget {
             ),
             body: Container(
               color: Colors.white,
+              height: double.infinity,
               child: controller.transactionList.length > 0
                   ? ListView.separated(
                       padding: EdgeInsets.all(gutter),

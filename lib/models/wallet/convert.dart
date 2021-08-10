@@ -11,7 +11,7 @@ class ConvertModel {
   int id;
   String from;
   String to;
-  int amount;
+  num amount;
   String statusName;
   DateTime createdAt;
 

@@ -10,7 +10,7 @@ class CommissionPackageModel {
 
   int id;
   String name;
-  int amount;
+  num amount;
   int period;
   String unit;
   String content;

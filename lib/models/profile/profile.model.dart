@@ -106,7 +106,7 @@ class InfoProduct {
   int? id;
   int? idUser;
   String? nickname;
-  int? price;
+  num? price;
   DateTime? birthday;
   int? height;
   int? weight;
@@ -224,7 +224,7 @@ class Skill {
   int? id;
   int? idUser;
   int? idSkills;
-  int? price;
+  num? price;
   String? nameSkill;
 
   factory Skill.fromJson(Map<String, dynamic> json) => Skill(

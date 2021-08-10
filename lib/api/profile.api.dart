@@ -83,8 +83,6 @@ class ProfileApi extends ApiHelper {
     return await get('product/user');
   }
 
-  // TODO: Update Partner
-
   // Buy Commssion Package
   Future<Response> partnerRegister({required String nickname, required int genderId, required int birthday, required int height, required int weight, required int bust, required int waist, required int hips, required int provinceId, required List<int> wardIdList, required List<ServiceModel> serviceList, required List<File> galleryList, required String code}) async {
     List<String> imageUrlList = [];

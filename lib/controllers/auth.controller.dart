@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:relaxury_partner/global/helpers/snackbar.helper.dart';
+import '../global/helpers/snackbar.helper.dart';
 import '../api/auth.api.dart';
 import '../api/profile.api.dart';
 import '../global/helpers/storage.dart';

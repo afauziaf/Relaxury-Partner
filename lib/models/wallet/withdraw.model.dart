@@ -16,8 +16,8 @@ class WithdrawModel {
   int? idWallet;
   String? symbol;
   String? outputAddress;
-  int? amount;
-  int? fee;
+  num? amount;
+  num? fee;
   int? total;
   String? txhash;
   int? status;

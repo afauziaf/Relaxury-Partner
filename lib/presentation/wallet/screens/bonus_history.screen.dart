@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:relaxury_partner/global/themes/layout.theme.dart';
+import 'package:intl/intl.dart';
+
 import '../../../controllers/profile.controller.dart';
 import '../../../global/layouts/defauft.layout.dart';
-import '../../../global/widgets/empty_file_widget.dart';
-import 'package:intl/intl.dart';
-import '../../../global/widgets/gutter.dart';
-
 import '../../../global/themes/color.theme.dart';
+import '../../../global/themes/layout.theme.dart';
+import '../../../global/widgets/empty_file_widget.dart';
+import '../../../global/widgets/gutter.dart';
 
 class BonusHistoryScreen extends StatelessWidget {
   const BonusHistoryScreen({Key? key}) : super(key: key);

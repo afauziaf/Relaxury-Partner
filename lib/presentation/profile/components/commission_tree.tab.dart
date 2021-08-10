@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:relaxury_partner/models/profile/commission_tree.model.dart';
+import '../../../models/profile/commission_tree.model.dart';
 import '../../../controllers/profile.controller.dart';
 import '../../../global/themes/layout.theme.dart';
 import '../../../global/widgets/empty_file_widget.dart';

@@ -25,7 +25,7 @@ class OrderModel {
   int? confirmBuy;
   int? status;
   int? skillId;
-  int? price;
+  num? price;
   String? nameWard;
   String? nameProvince;
   DateTime? dateFrom;

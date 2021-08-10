@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../controllers/splash.controller.dart';
-import '../../global/widgets/gutter.dart';
 import '../../global/themes/layout.theme.dart';
+import '../../global/widgets/gutter.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
