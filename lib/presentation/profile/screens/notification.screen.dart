@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../global/themes/layout.theme.dart';
 import '../../../controllers/notification.controller.dart';
@@ -65,6 +66,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             return Card(
                               margin: EdgeInsets.all(0),
                               child: ListTile(
+                                isThreeLine: true,
                                 leading: Container(
                                   width: 40,
                                   height: 40,
@@ -79,9 +81,20 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   controller.notificationList[index].title,
                                   style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
                                 ),
-                                subtitle: Text(
-                                  controller.notificationList[index].content,
-                                  style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    Gutter(scale: 0.25),
+                                    Text(
+                                      controller.notificationList[index].content,
+                                      style: Get.textTheme.bodyText2,
+                                    ),
+                                    Gutter(scale: 0.25),
+                                    Text(
+                                      "Date: " + DateFormat('dd/MM/yyyy - HH:mm').format(controller.notificationList[index].createdAt),
+                                      style: Get.textTheme.bodyText2,
+                                    ),
+                                  ],
                                 ),
                               ),
                             );

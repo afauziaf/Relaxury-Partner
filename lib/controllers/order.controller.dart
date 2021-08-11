@@ -11,17 +11,23 @@ class OrderController extends GetxController {
     Response response = await OrderApi().getBookingOrder();
 
     if (response.statusCode == 200) {
-      bookingHistory = List<OrderModel>.from((response.body['data']).map((json) => OrderModel.fromJson(json)));
+      List<OrderModel> data = List<OrderModel>.from((response.body['data']).map((json) => OrderModel.fromJson(json)));
 
       pendingBookingOrder.clear();
       activeBookingOrder.clear();
+      pendingBookingOrder.clear();
 
-      for (OrderModel order in bookingHistory) {
+      for (OrderModel order in data) {
         if (order.status == 0) {
           pendingBookingOrder.add(order);
         } else if (order.status == 1) {
           activeBookingOrder.add(order);
         }
+
+        bookingHistory.add(order);
+        bookingHistory.sort((a, b) {
+          return b.dateFrom!.compareTo(a.dateFrom!);
+        });
       }
 
       update();
