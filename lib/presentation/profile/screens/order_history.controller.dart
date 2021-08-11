@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../controllers/order.controller.dart';
 import '../../../global/themes/layout.theme.dart';
@@ -45,66 +46,75 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
               title: Text("Order History"),
               centerTitle: true,
             ),
-            body: SmartRefresher(
-              enablePullDown: true,
-              controller: _refreshController,
-              onRefresh: _onRefresh,
-              onLoading: _onLoading,
-              child: Container(
-                color: Colors.white,
-                child: controller.bookingHistory.length > 0
-                    ? ListView.separated(
-                        padding: EdgeInsets.all(gutter),
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller.bookingHistory.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: ListTile(
-                              leading: Container(
-                                  width: 40,
-                                  height: 40,
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: primaryColor,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/customer_avatar.png',
-                                    height: 24,
-                                    width: 24,
-                                    fit: BoxFit.cover,
-                                  )),
-                              title: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    controller.bookingHistory[index].usernameUserBuy ?? "",
-                                    style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
-                                  ),
-                                  Gutter(),
-                                  Text(
-                                    controller.bookingHistory[index].status == 2 ? "Completed" : "Canceled",
-                                    style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold, color: primaryColor),
-                                  ),
-                                ],
+            body: Container(
+              color: Colors.white,
+              height: double.infinity,
+              child: controller.bookingHistory.length > 0
+                  ? SmartRefresher(
+                      enablePullDown: true,
+                      controller: _refreshController,
+                      onRefresh: _onRefresh,
+                      onLoading: _onLoading,
+                      child: SingleChildScrollView(
+                        child: ListView.separated(
+                          padding: EdgeInsets.all(gutter),
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: controller.bookingHistory.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              child: ListTile(
+                                leading: Container(
+                                    width: 40,
+                                    height: 40,
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: primaryColor,
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/customer_avatar.png',
+                                      height: 24,
+                                      width: 24,
+                                      fit: BoxFit.cover,
+                                    )),
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      controller.bookingHistory[index].usernameUserBuy ?? "",
+                                      style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                                    ),
+                                    Gutter(),
+                                    Text(
+                                      controller.bookingHistory[index].status == 2 ? "Completed" : "Canceled",
+                                      style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold, color: primaryColor),
+                                    ),
+                                  ],
+                                ),
+                                subtitle: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "\$ " + controller.bookingHistory[index].price.toString(),
+                                      style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold, color: primaryColor),
+                                    ),
+                                    Gutter(),
+                                    Text(
+                                      DateFormat('dd/MM/yyyy').format(controller.bookingHistory[index].dateFrom!),
+                                      maxLines: 1,
+                                      style: Get.textTheme.bodyText2!.copyWith(color: Colors.grey),
+                                    )
+                                  ],
+                                ),
                               ),
-                              subtitle: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "\$ " + controller.bookingHistory[index].price.toString(),
-                                    style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold, color: primaryColor),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) => Gutter(),
-                      )
-                    : EmptyFileWidget(),
-              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) => Gutter(),
+                        ),
+                      ),
+                    )
+                  : EmptyFileWidget(),
             ),
           ),
         );

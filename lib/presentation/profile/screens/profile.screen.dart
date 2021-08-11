@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'partner.screen.dart';
-import 'partner_register.screen.dart';
+
 import '../../../controllers/profile.controller.dart';
 import '../../../global/themes/color.theme.dart';
 import '../../../global/themes/layout.theme.dart';
@@ -11,6 +10,8 @@ import '../components/profile_header_card.dart';
 import 'comission_package_list.screen.dart';
 import 'commission.screen.dart';
 import 'order_history.controller.dart';
+import 'partner.screen.dart';
+import 'partner_register.screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({

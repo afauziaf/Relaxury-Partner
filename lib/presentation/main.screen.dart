@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../global/layouts/defauft.layout.dart';
-import 'order/screens/order.screen.dart';
-import 'profile/screens/notification.screen.dart';
+
 import '../controllers/main.controller.dart';
 import '../controllers/profile.controller.dart';
 import '../global/helpers/storage.dart';
+import '../global/layouts/defauft.layout.dart';
 import '../global/routes/name.route.dart';
 import '../global/themes/color.theme.dart';
-import 'wallet/screens/wallet.screen.dart';
-
 import 'chat/screens/chat.screen.dart';
+import 'order/screens/order.screen.dart';
+import 'profile/screens/notification.screen.dart';
+import 'wallet/screens/wallet.screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({
@@ -70,10 +70,11 @@ class _MainScreenState extends State<MainScreen> {
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         decoration: BoxDecoration(shape: BoxShape.circle),
                         child: Hero(
-                          tag: 'avatar',
-                          child: mainController.profileController.profileModel.avatar != null
-                              ? Image.network(
-                                  Storage(StorageName.baseUrl).read() + (mainController.profileController.profileModel.avatar ?? ""),
+                            tag: 'avatar',
+                            child: GetBuilder<ProfileController>(
+                              builder: (profileController) {
+                                return Image.network(
+                                  Storage(StorageName.baseUrl).read() + (profileController.profileModel.avatar),
                                   fit: BoxFit.cover,
                                   height: 24,
                                   width: 24,
@@ -85,14 +86,9 @@ class _MainScreenState extends State<MainScreen> {
                                       fit: BoxFit.cover,
                                     );
                                   },
-                                )
-                              : Image.asset(
-                                  'assets/images/customer_avatar.png',
-                                  height: 24,
-                                  width: 24,
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
+                                );
+                              },
+                            )),
                       ),
                     ),
                   ],

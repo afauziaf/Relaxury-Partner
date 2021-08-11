@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../global/helpers/api.helper.dart';
 
 class WalletApi extends ApiHelper {

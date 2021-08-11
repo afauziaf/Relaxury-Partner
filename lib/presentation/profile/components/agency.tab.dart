@@ -5,8 +5,8 @@ import 'package:getwidget/components/button/gf_icon_button.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import '../../../controllers/profile.controller.dart';
 
+import '../../../controllers/profile.controller.dart';
 import '../../../global/helpers/snackbar.helper.dart';
 import '../../../global/themes/color.theme.dart';
 import '../../../global/themes/layout.theme.dart';

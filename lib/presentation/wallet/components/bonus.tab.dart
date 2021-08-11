@@ -68,7 +68,7 @@ class _BonusTabState extends State<BonusTab> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Recent Comission",
+                                "Recent Commission",
                                 textAlign: TextAlign.start,
                                 style: Get.textTheme.headline6!.copyWith(color: primaryColor, fontWeight: FontWeight.bold),
                               ),

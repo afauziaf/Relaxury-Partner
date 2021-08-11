@@ -5,6 +5,7 @@ import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/components/button/gf_icon_button.dart';
 import 'package:getwidget/size/gf_size.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
 import '../../../controllers/wallet.controller.dart';
 import '../../../global/layouts/functionality.layout.dart';
 import '../../../global/screens/qr_scanner.screen.dart';
@@ -144,11 +145,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                         ),
                       ),
                       Gutter(),
-                      GFIconButton(
+                      GFButton(
                         onPressed: () => _walletController.sendCode(),
-                        icon: Icon(Icons.send, size: 24),
-                        borderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+                        text: "Get Code",
+                        size: GFSize.LARGE,
                         color: primaryColor,
+                        textColor: Colors.white,
                       ),
                     ],
                   ),

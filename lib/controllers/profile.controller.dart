@@ -1,16 +1,18 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import '../global/helpers/snackbar.helper.dart';
-import '../models/profile/commission_tree.model.dart';
-import '../models/profile/partner.model.dart';
+import 'package:getwidget/components/loader/gf_loader.dart';
+
 import '../api/auth.api.dart';
 import '../api/profile.api.dart';
+import '../global/helpers/snackbar.helper.dart';
 import '../global/helpers/storage.dart';
 import '../global/routes/name.route.dart';
 import '../models/profile/commission.model.dart';
 import '../models/profile/commission_package.model.dart';
+import '../models/profile/commission_tree.model.dart';
 import '../models/profile/gender.model.dart';
+import '../models/profile/partner.model.dart';
 import '../models/profile/profile.model.dart';
 import '../models/profile/province.model.dart';
 import '../models/profile/service.model.dart';
@@ -58,6 +60,10 @@ class ProfileController extends GetxController {
     }
 
     getCommissionPackage();
+
+    getGenderList();
+    getServiceList();
+    getProvinceList();
 
     update();
   }
@@ -119,12 +125,15 @@ class ProfileController extends GetxController {
   }
 
   buyCommissionPackage({required int packageId, required String code}) async {
+    Get.dialog(GFLoader());
     Response response = await ProfileApi(enableLoader: true, enableNotifier: true).buyCommissionPackage(packageId: packageId, code: code);
+    if (Get.isDialogOpen != null) if (Get.isDialogOpen!) Get.back();
 
     if (response.statusCode == 200) {
       getProfileInfo();
       Get.back();
       Get.back();
+      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Buy package success", status: AlertType.success);
     }
   }
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/button/gf_icon_button.dart';
 import 'package:getwidget/getwidget.dart';
+
 import '../../../controllers/auth.controller.dart';
 import '../../../global/themes/color.theme.dart';
 import '../../../global/themes/input.theme.dart';
@@ -21,6 +21,7 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
   AuthController _authController = Get.find();
   GlobalKey<FormBuilderState> _formKey = new GlobalKey<FormBuilderState>();
   TextEditingController _emailInputController = new TextEditingController();
+  String email = '';
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
 
     if (Get.arguments != null) {
       _emailInputController.text = Get.arguments;
+      email = Get.arguments;
     }
   }
 
@@ -46,42 +48,44 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
               child: Column(
                 children: [
                   // Email
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FormBuilderTextField(
-                          name: "email",
-                          controller: _emailInputController,
-                          cursorColor: primaryColor,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: inputDecoration.copyWith(
-                            hintText: "Email",
-                            prefixIcon: Icon(Icons.email),
-                          ),
-                          validator: (value) {
-                            if (value != null && value.length > 0) {
-                              if (value.toString().isEmail) {
-                                return null;
+                  if (Get.arguments == null)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: FormBuilderTextField(
+                            name: "email",
+                            controller: _emailInputController,
+                            cursorColor: primaryColor,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: inputDecoration.copyWith(
+                              hintText: "Email",
+                              prefixIcon: Icon(Icons.email),
+                            ),
+                            validator: (value) {
+                              if (value != null && value.length > 0) {
+                                if (value.toString().isEmail) {
+                                  return null;
+                                } else {
+                                  return "Email is invalid";
+                                }
                               } else {
-                                return "Email is invalid";
+                                return "Email is required";
                               }
-                            } else {
-                              return "Email is required";
-                            }
-                          },
+                            },
+                          ),
                         ),
-                      ),
-                      Gutter(),
-                      GFIconButton(
-                        onPressed: () => _authController.sendCodeWithEmail(email: _emailInputController.text.trim()),
-                        icon: Icon(Icons.send, size: 24),
-                        borderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
-                        color: primaryColor,
-                      ),
-                    ],
-                  ),
+                        Gutter(),
+                        GFButton(
+                          onPressed: () => _authController.sendCodeWithEmail(email: _emailInputController.text.trim()),
+                          text: "Get Code",
+                          size: GFSize.LARGE,
+                          color: primaryColor,
+                          textColor: Colors.white,
+                        ),
+                      ],
+                    ),
 
-                  Gutter(), Divider(), Gutter(),
+                  if (Get.arguments == null) Gutter(), if (Get.arguments == null) Divider(), if (Get.arguments == null) Gutter(),
 
                   // Code
                   FormBuilderTextField(
@@ -122,7 +126,7 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
                         _formKey.currentState!.save();
 
                         _authController.accountVerification(
-                          email: _emailInputController.text.trim(),
+                          email: Get.arguments == null ? _formKey.currentState!.fields['code']!.value.toString().trim() : Get.arguments,
                           code: _formKey.currentState!.fields['code']!.value.toString().trim(),
                         );
                       }

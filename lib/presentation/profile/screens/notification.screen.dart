@@ -53,38 +53,41 @@ class _NotificationScreenState extends State<NotificationScreen> {
               onLoading: _onLoading,
               child: Container(
                 color: Colors.white,
+                height: double.infinity,
                 child: controller.notificationList.length > 0
-                    ? ListView.separated(
-                        physics: NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.all(gutter).copyWith(bottom: padding * 2),
-                        shrinkWrap: true,
-                        itemCount: controller.notificationList.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            margin: EdgeInsets.all(0),
-                            child: ListTile(
-                              leading: Container(
-                                width: 40,
-                                height: 40,
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: primaryColor,
+                    ? SingleChildScrollView(
+                        child: ListView.separated(
+                          padding: EdgeInsets.all(gutter),
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: controller.notificationList.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              margin: EdgeInsets.all(0),
+                              child: ListTile(
+                                leading: Container(
+                                  width: 40,
+                                  height: 40,
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: primaryColor,
+                                  ),
+                                  child: SvgPicture.asset('assets/icons/bell.svg'),
                                 ),
-                                child: SvgPicture.asset('assets/icons/bell.svg'),
+                                title: Text(
+                                  controller.notificationList[index].title,
+                                  style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text(
+                                  controller.notificationList[index].content,
+                                  style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                                ),
                               ),
-                              title: Text(
-                                controller.notificationList[index].title,
-                                style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              subtitle: Text(
-                                controller.notificationList[index].content,
-                                style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) => Gutter(),
+                            );
+                          },
+                          separatorBuilder: (context, index) => Gutter(),
+                        ),
                       )
                     : EmptyFileWidget(),
               ),

@@ -18,7 +18,6 @@ class MainController extends GetxController {
 
     walletController.getWalletInfo();
     walletController.getTransactionList();
-    orderController.getBookingOrder();
     notificationController.getNotificationList();
     profileController.getProfileInfo();
 

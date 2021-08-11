@@ -58,10 +58,10 @@ class ProfileModel {
         phoneNumber: json["phone_number"],
         type: json["type"],
         nameGender: json["name_gender"],
-        birthday: DateTime.parse(json["birthday"]),
+        birthday: DateTime.tryParse(json["birthday"]) ?? null,
         avatar: json["avatar"],
         hasProduct: json["hasProduct"],
-        infoProduct: InfoProduct.fromJson(json["infoProduct"]),
+        infoProduct: json["infoProduct"] != null ? InfoProduct.fromJson(json["infoProduct"]) : null,
       );
 
   Map<String, dynamic> toJson() => {

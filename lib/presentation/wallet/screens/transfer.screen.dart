@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
-import 'package:getwidget/components/button/gf_icon_button.dart';
 import 'package:getwidget/size/gf_size.dart';
 import '../../../controllers/wallet.controller.dart';
 import '../../../global/layouts/functionality.layout.dart';
@@ -121,12 +120,19 @@ class _TransferScreenState extends State<TransferScreen> {
                         ),
                       ),
                       Gutter(),
-                      GFIconButton(
+                      GFButton(
                         onPressed: () => _walletController.sendCode(),
-                        icon: Icon(Icons.send, size: 24),
-                        borderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+                        text: "Get Code",
+                        size: GFSize.LARGE,
                         color: primaryColor,
+                        textColor: Colors.white,
                       ),
+                      // GFIconButton(
+                      //   onPressed: () => _walletController.sendCode(),
+                      //   icon: Icon(Icons.send, size: 24),
+                      //   borderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+                      //   color: primaryColor,
+                      // ),
                     ],
                   ),
                 ],

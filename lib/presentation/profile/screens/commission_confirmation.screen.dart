@@ -61,15 +61,14 @@ class _CommissionConfirmationScreenState extends State<CommissionConfirmationScr
                     ),
                   ),
                   Gutter(),
-                  GFIconButton(
+                  GFButton(
                     onPressed: () async {
                       await _profileController.sendCode();
                     },
-                    color: Colors.grey.shade200,
-                    icon: Icon(
-                      Icons.send,
-                      color: Colors.grey.shade600,
-                    ),
+                    text: "Get Code",
+                    size: GFSize.LARGE,
+                    color: primaryColor,
+                    textColor: Colors.white,
                   ),
                 ],
               ),

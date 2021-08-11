@@ -59,11 +59,12 @@ class _PartnerRegisterConfirmationScreenState extends State<PartnerRegisterConfi
                         ),
                       ),
                       Gutter(),
-                      GFIconButton(
+                      GFButton(
                         onPressed: () => _profileController.sendCode(),
-                        icon: Icon(Icons.send, size: 24),
-                        borderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+                        text: "Get Code",
+                        size: GFSize.LARGE,
                         color: primaryColor,
+                        textColor: Colors.white,
                       ),
                     ],
                   ),

@@ -7,8 +7,9 @@ class OrderModel {
     this.confirmSell,
     this.confirmBuy,
     this.status,
-    this.skillId,
     this.price,
+    this.skillId,
+    this.skillName,
     this.nameWard,
     this.nameProvince,
     this.dateFrom,
@@ -24,8 +25,9 @@ class OrderModel {
   int? confirmSell;
   int? confirmBuy;
   int? status;
-  int? skillId;
   num? price;
+  int? skillId;
+  String? skillName;
   String? nameWard;
   String? nameProvince;
   DateTime? dateFrom;
@@ -41,8 +43,9 @@ class OrderModel {
         confirmSell: json["confirm_sell"],
         confirmBuy: json["confirm_buy"],
         status: json["status"],
-        skillId: json["skill_id"],
         price: json["price"],
+        skillId: json["skill_id"],
+        skillName: json["skill_name"],
         nameWard: json["name_ward"],
         nameProvince: json["name_province"],
         dateFrom: DateTime.parse(json["date_from"]),

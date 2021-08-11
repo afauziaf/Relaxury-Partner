@@ -17,13 +17,15 @@ class CommissionTreeTab extends StatelessWidget {
     return GetBuilder<ProfileController>(
       builder: (controller) {
         if (controller.commissionTree!.children.length > 0) {
-          return ListView.separated(
-            padding: EdgeInsets.all(padding),
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: controller.commissionTree!.children.length,
-            itemBuilder: (context, index) => CommissionChildItem(child: controller.commissionTree!.children[index]),
-            separatorBuilder: (context, index) => Gutter(),
+          return SingleChildScrollView(
+            child: ListView.separated(
+              padding: EdgeInsets.all(padding),
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: controller.commissionTree!.children.length,
+              itemBuilder: (context, index) => CommissionChildItem(child: controller.commissionTree!.children[index]),
+              separatorBuilder: (context, index) => Gutter(),
+            ),
           );
         } else {
           return EmptyFileWidget();

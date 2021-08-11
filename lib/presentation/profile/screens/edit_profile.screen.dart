@@ -6,6 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_icon_button.dart';
 import 'package:getwidget/getwidget.dart';
+
 import '../../../controllers/profile.controller.dart';
 import '../../../global/helpers/storage.dart';
 import '../../../global/themes/color.theme.dart';
@@ -148,6 +149,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 FormBuilderTextField(
                                   controller: _nicknameInput,
                                   name: "nickname",
+                                  readOnly: true,
                                   cursorColor: primaryColor,
                                   decoration: inputDecoration.copyWith(
                                     hintText: "Nickname",

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get.dart';
-import '../../../controllers/auth.controller.dart';
-import '../../../global/themes/layout.theme.dart';
-import '../components/country_picker.bottomsheet.dart';
-import '../layout/auth.layout.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../../../controllers/auth.controller.dart';
 import '../../../global/screens/qr_scanner.screen.dart';
 import '../../../global/themes/color.theme.dart';
 import '../../../global/themes/input.theme.dart';
+import '../../../global/themes/layout.theme.dart';
 import '../../../global/widgets/gutter.dart';
 import '../../../services/country.service.dart';
+import '../components/country_picker.bottomsheet.dart';
+import '../layout/auth.layout.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);

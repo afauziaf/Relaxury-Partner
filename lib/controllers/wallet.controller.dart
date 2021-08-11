@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:getwidget/components/loader/gf_loader.dart';
+import '../global/helpers/snackbar.helper.dart';
 import '../api/auth.api.dart';
 import '../api/wallet.api.dart';
 import '../models/wallet/convert.dart';
@@ -46,7 +48,7 @@ class WalletController extends GetxController {
 
     // Arrange by date
     transactionList.sort((a, b) {
-      return a.createAt.compareTo(b.createAt);
+      return b.createAt.compareTo(a.createAt);
     });
 
     update();
@@ -54,25 +56,41 @@ class WalletController extends GetxController {
 
   // Transfer
   transfer({required String username, required num amount, required String code}) async {
-    Response response = await WalletApi(enableLoader: true, enableNotifier: true).transfer(username: username, amount: amount, code: code);
+    Get.dialog(GFLoader());
+    Response response = await WalletApi().transfer(username: username, amount: amount, code: code);
+    if (Get.isDialogOpen != null) if (Get.isDialogOpen!) Get.back();
 
     if (response.statusCode == 200) {
+      getTransactionList();
       Get.back();
+      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Transfer success", status: AlertType.success);
     }
   }
 
   // Convert
   convert({required num walletFrom, required num walletTo, required num amount, required String code}) async {
-    Response response = await WalletApi(enableLoader: true, enableNotifier: true).convert(walletFrom: walletFrom, walletTo: walletTo, amount: amount, code: code);
+    Get.dialog(GFLoader());
+    Response response = await WalletApi().convert(walletFrom: walletFrom, walletTo: walletTo, amount: amount, code: code);
+    if (Get.isDialogOpen != null) if (Get.isDialogOpen!) Get.back();
 
     if (response.statusCode == 200) {
+      getTransactionList();
       Get.back();
+      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Transfer success", status: AlertType.success);
     }
   }
 
   // Withdraw
   withdraw({required String outputAddress, required num amount, required String code}) async {
-    WalletApi(enableLoader: true, enableNotifier: true).withdraw(outputAddress: outputAddress, amount: amount, code: code);
+    Get.dialog(GFLoader());
+    Response response = await WalletApi().withdraw(outputAddress: outputAddress, amount: amount, code: code);
+    if (Get.isDialogOpen != null) if (Get.isDialogOpen!) Get.back();
+
+    if (response.statusCode == 200) {
+      getTransactionList();
+      Get.back();
+      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Transfer success", status: AlertType.success);
+    }
   }
 
   // Send Code
