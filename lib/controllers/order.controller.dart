@@ -15,7 +15,7 @@ class OrderController extends GetxController {
 
       pendingBookingOrder.clear();
       activeBookingOrder.clear();
-      pendingBookingOrder.clear();
+      bookingHistory.clear();
 
       for (OrderModel order in data) {
         if (order.status == 0) {
