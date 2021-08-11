@@ -48,6 +48,8 @@ class _ActiveOrderTabState extends State<ActiveOrderTab> {
             onLoading: _onLoading,
             child: SingleChildScrollView(
               child: ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.all(gutter),
                 itemCount: controller.activeBookingOrder.length,
                 itemBuilder: (c, index) => Card(

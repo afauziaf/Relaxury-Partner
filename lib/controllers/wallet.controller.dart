@@ -24,6 +24,8 @@ class WalletController extends GetxController {
   getTransactionList() async {
     Response response;
 
+    transactionList.clear();
+
     // Get Deposit History
     response = await WalletApi().getDepositList();
     List<DepositModel> depositHistory = List<DepositModel>.from((response.body['data']).map((json) => DepositModel.fromJson(json)));

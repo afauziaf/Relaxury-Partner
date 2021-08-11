@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../../../controllers/auth.controller.dart';
+import '../../../global/themes/layout.theme.dart';
+import '../components/country_picker.bottomsheet.dart';
+import '../layout/auth.layout.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
-import '../../../controllers/auth.controller.dart';
 import '../../../global/screens/qr_scanner.screen.dart';
 import '../../../global/themes/color.theme.dart';
 import '../../../global/themes/input.theme.dart';
-import '../../../global/themes/layout.theme.dart';
 import '../../../global/widgets/gutter.dart';
 import '../../../services/country.service.dart';
-import '../components/country_picker.bottomsheet.dart';
-import '../layout/auth.layout.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -23,6 +22,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool passShow = false;
+  bool passConfShow = false;
   AuthController _authController = Get.find();
   GlobalKey<FormBuilderState> _formKey = new GlobalKey<FormBuilderState>();
   TextEditingController _refInputController = new TextEditingController();
@@ -135,10 +136,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 FormBuilderTextField(
                   name: "password",
                   cursorColor: primaryColor,
-                  obscureText: true,
+                  obscureText: !passShow,
                   decoration: inputDecoration.copyWith(
                     hintText: "Password",
                     prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      onPressed: () => setState(() {
+                        passShow = !passShow;
+                      }),
+                      icon: Icon(passShow ? Icons.visibility : Icons.visibility_off),
+                    ),
                   ),
                   validator: (value) {
                     if (value != null && value.length > 0) {
@@ -158,10 +165,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 FormBuilderTextField(
                   name: "password_confirmation",
                   cursorColor: primaryColor,
-                  obscureText: true,
+                  obscureText: !passConfShow,
                   decoration: inputDecoration.copyWith(
                     hintText: "Password Confirmation",
                     prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      onPressed: () => setState(() {
+                        passConfShow = !passConfShow;
+                      }),
+                      icon: Icon(passConfShow ? Icons.visibility : Icons.visibility_off),
+                    ),
                   ),
                   validator: (value) {
                     if (value != null && value.length > 0) {
