@@ -55,6 +55,9 @@ class ApiHelper extends GetConnect {
     // If enable loader
     if (enableLoader != null) if (enableLoader!) Get.dialog(GFLoader());
 
+    print(body['email']);
+    print(body['code']);
+
     Response<T> response = await super.post(url, body, contentType: contentType, headers: headersAuth, query: query, decoder: decoder, uploadProgress: uploadProgress);
 
     if (Get.isDialogOpen != null) if (Get.isDialogOpen!) Get.back();

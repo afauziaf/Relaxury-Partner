@@ -87,7 +87,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   Gutter(scale: 2),
 
                   Text(
-                    "Total: " + (_walletController.walletModel.balance ?? 0).toStringAsFixed(2),
+                    "Total: \$" + (_walletController.walletModel.balance ?? 0).toStringAsFixed(2),
                     textAlign: TextAlign.justify,
                   ),
                   Gutter(scale: 0.5),

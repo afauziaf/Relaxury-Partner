@@ -88,25 +88,40 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
                   if (Get.arguments == null) Gutter(), if (Get.arguments == null) Divider(), if (Get.arguments == null) Gutter(),
 
                   // Code
-                  FormBuilderTextField(
-                    name: "code",
-                    cursorColor: primaryColor,
-                    keyboardType: TextInputType.number,
-                    decoration: inputDecoration.copyWith(
-                      hintText: "Code",
-                      prefixIcon: Icon(Icons.password),
-                    ),
-                    validator: (value) {
-                      if (value != null && value.length > 0) {
-                        if (value.length >= 6) {
-                          return null;
-                        } else {
-                          return "Code must be at least 6 characters";
-                        }
-                      } else {
-                        return "Code is required";
-                      }
-                    },
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FormBuilderTextField(
+                          name: "code",
+                          cursorColor: primaryColor,
+                          keyboardType: TextInputType.number,
+                          decoration: inputDecoration.copyWith(
+                            hintText: "Code",
+                            prefixIcon: Icon(Icons.password),
+                          ),
+                          validator: (value) {
+                            if (value != null && value.length > 0) {
+                              if (value.length >= 6) {
+                                return null;
+                              } else {
+                                return "Code must be at least 6 characters";
+                              }
+                            } else {
+                              return "Code is required";
+                            }
+                          },
+                        ),
+                      ),
+                      if (email.length > 0) Gutter(),
+                      if (email.length > 0)
+                        GFButton(
+                          onPressed: () => _authController.sendCodeWithEmail(email: _emailInputController.text.trim()),
+                          text: "Get Code",
+                          size: GFSize.LARGE,
+                          color: primaryColor,
+                          textColor: Colors.white,
+                        ),
+                    ],
                   ),
                 ],
               ),
@@ -126,7 +141,7 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
                         _formKey.currentState!.save();
 
                         _authController.accountVerification(
-                          email: Get.arguments == null ? _formKey.currentState!.fields['code']!.value.toString().trim() : Get.arguments,
+                          email: Get.arguments == null ? _formKey.currentState!.fields['email']!.value.toString().trim() : Get.arguments,
                           code: _formKey.currentState!.fields['code']!.value.toString().trim(),
                         );
                       }

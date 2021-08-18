@@ -61,7 +61,7 @@ class _TransferScreenState extends State<TransferScreen> {
                   Gutter(scale: 2),
 
                   Text(
-                    "Total: " + (_walletController.walletModel.balance ?? 0).toStringAsFixed(2),
+                    "Total: \$" + (_walletController.walletModel.balance ?? 0).toStringAsFixed(2),
                     textAlign: TextAlign.justify,
                   ),
                   Gutter(scale: 0.5),
@@ -74,6 +74,7 @@ class _TransferScreenState extends State<TransferScreen> {
                     decoration: inputDecoration.copyWith(
                       hintText: "Amount",
                       prefixIcon: Icon(Icons.paid),
+                      helperText: "Fee: \$2",
                     ),
                     validator: (value) {
                       if (value != null && value.length > 0) {

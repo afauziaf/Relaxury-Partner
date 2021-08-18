@@ -57,9 +57,6 @@ class AuthController extends GetxController {
   accountVerification({required String email, required String code}) async {
     Response response = await AuthApi(enableLoader: true, enableNotifier: true).accountVerification(email: email, code: code);
 
-    print("email: $email");
-    print("code: $code");
-
     if (response.statusCode == 200) {
       Get.offAllNamed(RouteName.login);
     }

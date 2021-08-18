@@ -42,7 +42,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Total: " + (_walletController.walletModel.balanceCommission ?? 0).toStringAsFixed(2),
+                    "Total: \$" + (_walletController.walletModel.balanceCommission ?? 0).toStringAsFixed(2),
                     textAlign: TextAlign.justify,
                   ),
                   Gutter(scale: 0.5),
@@ -82,7 +82,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
                   Gutter(scale: 2),
 
                   Text(
-                    "Total: " + (_walletController.walletModel.balance ?? 0).toStringAsFixed(2),
+                    "Total: \$" + (_walletController.walletModel.balance ?? 0).toStringAsFixed(2),
                     textAlign: TextAlign.justify,
                   ),
                   Gutter(scale: 0.5),
