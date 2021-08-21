@@ -20,6 +20,7 @@ class StorageName {
 
   // Save Login
   static const userId = 'userId';
+  static const email = 'email';
   static const username = 'username';
   static const password = 'password';
 }

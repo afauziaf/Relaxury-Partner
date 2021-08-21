@@ -14,7 +14,7 @@ class AuthController extends GetxController {
     if (response.statusCode == 200) {
       if (response.body['access_token'] != null) {
         if (response.body['user_type'] == "0") {
-          await Storage(StorageName.token).write("Bearer" + response.body['access_token']);
+          await Storage(StorageName.token).write("Bearer " + response.body['access_token']);
           await Storage(StorageName.username).write(username);
           await Storage(StorageName.password).write(password);
           await Storage(StorageName.baseUrl).write('https://core.relaxury.io/');
@@ -29,7 +29,8 @@ class AuthController extends GetxController {
           AlertSnackbar.open(title: "Access Denied", message: "Please sign up new account to use this application", status: AlertType.warning);
         }
       } else {
-        Get.toNamed(RouteName.accountVerification);
+        AuthApi().sendCodeWithEmail(email: response.body['email']);
+        Get.toNamed(RouteName.accountVerification, arguments: response.body['email']);
       }
     }
   }

@@ -8,6 +8,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:relaxury_partner/global/routes/name.route.dart';
+import 'package:relaxury_partner/presentation/profile/screens/partner_register_confirmation.screen.dart';
 import '../../../controllers/profile.controller.dart';
 import '../../../global/helpers/snackbar.helper.dart';
 import '../../../global/layouts/defauft.layout.dart';
@@ -162,9 +163,9 @@ class _PartnerRegisterScreenState extends State<PartnerRegisterScreen> {
                                     validator: (value) {
                                       if (value != null) {
                                         if (value.isAfter(DateTime.now())) {
-                                          return null;
-                                        } else {
                                           return "Birthday is valid";
+                                        } else {
+                                          return null;
                                         }
                                       } else {
                                         return "Birthday is required";
@@ -572,7 +573,7 @@ class _PartnerRegisterScreenState extends State<PartnerRegisterScreen> {
                                       print("Ward Id List: " + controller.partnerModel.wardIdList.length.toString());
                                       print("Gallery List: " + controller.partnerModel.gallery.toString());
 
-                                      Get.toNamed(RouteName.partnerRegisterVerification);
+                                      Get.to(() => PartnerRegisterConfirmationScreen());
                                     }
                                   }
                                 },

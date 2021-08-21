@@ -66,6 +66,8 @@ class WalletController extends GetxController {
       getTransactionList();
       Get.back();
       AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Transfer success", status: AlertType.success);
+    } else {
+      AlertSnackbar.open(title: "Failed", message: response.body['message'] ?? "Transfer failed", status: AlertType.danger);
     }
   }
 
@@ -78,7 +80,9 @@ class WalletController extends GetxController {
     if (response.statusCode == 200) {
       getTransactionList();
       Get.back();
-      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Transfer success", status: AlertType.success);
+      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Convert success", status: AlertType.success);
+    } else {
+      AlertSnackbar.open(title: "Failed", message: response.body['message'] ?? "Convert failed", status: AlertType.danger);
     }
   }
 
@@ -91,7 +95,9 @@ class WalletController extends GetxController {
     if (response.statusCode == 200) {
       getTransactionList();
       Get.back();
-      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Transfer success", status: AlertType.success);
+      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Withdraw success", status: AlertType.success);
+    } else {
+      AlertSnackbar.open(title: "Failed", message: response.body['message'] ?? "Withdraw failed", status: AlertType.danger);
     }
   }
 
