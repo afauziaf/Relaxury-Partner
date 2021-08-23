@@ -92,14 +92,15 @@ class ProfileController extends GetxController {
   }
 
   registerPartner({required String nickname, required int genderId, required int birthday, required int height, required int weight, required int bust, required int waist, required int hips, required int provinceId, required List<int> wardIdList, required List<ServiceModel> serviceList, required List<File> galleryList, required String code}) async {
-    Response response = await ProfileApi(enableLoader: true, enableNotifier: true).partnerRegister(nickname: nickname, genderId: genderId, birthday: birthday, height: height, weight: weight, bust: bust, waist: waist, hips: hips, provinceId: provinceId, wardIdList: wardIdList, serviceList: serviceList, galleryList: galleryList, code: code);
+    Response response = await ProfileApi(enableLoader: false, enableNotifier: false).partnerRegister(nickname: nickname, genderId: genderId, birthday: birthday, height: height, weight: weight, bust: bust, waist: waist, hips: hips, provinceId: provinceId, wardIdList: wardIdList, serviceList: serviceList, galleryList: galleryList, code: code);
 
     if (response.statusCode == 200) {
-      getProfileInfo();
+      await getProfileInfo();
 
-      while (Get.currentRoute != RouteName.profile) {
-        Get.back();
-      }
+      Get.offNamedUntil(RouteName.profile, (route) => route.isCurrent);
+      AlertSnackbar.open(title: "Success", message: response.body['message'] ?? "Register success", status: AlertType.success);
+    } else {
+      AlertSnackbar.open(title: "Failed", message: response.body['message'] ?? "Register failed", status: AlertType.danger);
     }
   }
 

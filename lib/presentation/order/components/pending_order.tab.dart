@@ -46,116 +46,111 @@ class _PendingOrderTabState extends State<PendingOrderTab> {
             controller: _refreshController,
             onRefresh: _onRefresh,
             onLoading: _onLoading,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SingleChildScrollView(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+            child: SingleChildScrollView(
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.all(gutter),
+                itemCount: controller.pendingBookingOrder.length,
+                itemBuilder: (c, index) => Card(
+                  margin: EdgeInsets.all(0),
+                  elevation: 5,
+                  child: Container(
                     padding: EdgeInsets.all(gutter),
-                    itemCount: controller.pendingBookingOrder.length,
-                    itemBuilder: (c, index) => Card(
-                      margin: EdgeInsets.all(0),
-                      elevation: 5,
-                      child: Container(
-                        padding: EdgeInsets.all(gutter),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                Text("Order by: ", style: Get.textTheme.bodyText1),
-                                Spacer(),
-                                Text(controller.pendingBookingOrder[index].usernameUserBuy.toString(), style: Get.textTheme.bodyText1!.copyWith(color: Get.theme.primaryColor, fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                            Divider(thickness: 1),
-                            Row(
-                              children: [
-                                Icon(Icons.access_time),
-                                Gutter(scale: 0.5),
-                                Text("Start Time: ", style: Get.textTheme.bodyText1),
-                                Spacer(),
-                                Text(
-                                  DateFormat("dd/MM/yyyy - HH:mm").format(controller.pendingBookingOrder[index].dateFrom!).toString(),
-                                  style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            if (controller.pendingBookingOrder[index].skillId == 3) Gutter(),
-                            if (controller.pendingBookingOrder[index].skillId == 3)
-                              Row(
-                                children: [
-                                  Icon(Icons.calendar_today),
-                                  Gutter(scale: 0.5),
-                                  Text("End Time: ", style: Get.textTheme.bodyText1),
-                                  Spacer(),
-                                  Text(
-                                    DateFormat("dd/MM/yyyy - HH:mm").format(controller.pendingBookingOrder[index].dateTo!).toString(),
-                                    style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            Gutter(),
-                            Row(
-                              children: [
-                                Icon(Icons.dashboard),
-                                Gutter(scale: 0.5),
-                                Text("Service: ", style: Get.textTheme.bodyText1),
-                                Spacer(),
-                                Text(
-                                  controller.pendingBookingOrder[index].skillName.toString(),
-                                  // controllerprofileController.serviceList.where((element) => element.id == controller.pendingBookingOrder[index].skillId).first.name.toString(),
-                                  style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                            Gutter(),
-                            Row(
-                              children: [
-                                Icon(Icons.attach_money),
-                                Gutter(scale: 0.5),
-                                Text("Total Price: ", style: Get.textTheme.bodyText1),
-                                Spacer(),
-                                Text(
-                                  "\$ " + controller.pendingBookingOrder[index].price!.toStringAsFixed(2),
-                                  style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                            Divider(thickness: 1),
-                            if (controller.pendingBookingOrder[index].note != null) Text("Note: ", style: Get.textTheme.bodyText1),
-                            if (controller.pendingBookingOrder[index].note != null) Gutter(scale: 0.5),
-                            if (controller.pendingBookingOrder[index].note != null) Text((controller.pendingBookingOrder[index].note ?? "").toString(), style: Get.textTheme.bodyText1!.copyWith(color: Colors.grey)),
-                            if (controller.pendingBookingOrder[index].note != null) Divider(thickness: 1),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: GFButton(
-                                    color: Colors.red,
-                                    onPressed: () => controller.cancelOrder(controller.pendingBookingOrder[index].ordersId!),
-                                    text: "Cancel",
-                                  ),
-                                ),
-                                Expanded(child: SizedBox()),
-                                Expanded(
-                                  child: GFButton(
-                                    color: Colors.green,
-                                    onPressed: () => controller.acceptOrder(controller.pendingBookingOrder[index].ordersId!),
-                                    text: "Accept",
-                                  ),
-                                ),
-                              ],
+                            Text("Order by: ", style: Get.textTheme.bodyText1),
+                            Spacer(),
+                            Text(controller.pendingBookingOrder[index].usernameUserBuy.toString(), style: Get.textTheme.bodyText1!.copyWith(color: Get.theme.primaryColor, fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        Divider(thickness: 1),
+                        Row(
+                          children: [
+                            Icon(Icons.access_time),
+                            Gutter(scale: 0.5),
+                            Text("Start Time: ", style: Get.textTheme.bodyText1),
+                            Spacer(),
+                            Text(
+                              DateFormat("dd/MM/yyyy - HH:mm").format(controller.pendingBookingOrder[index].dateFrom!).toString(),
+                              style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
-                      ),
+                        if (controller.pendingBookingOrder[index].skillId == 3) Gutter(),
+                        if (controller.pendingBookingOrder[index].skillId == 3)
+                          Row(
+                            children: [
+                              Icon(Icons.calendar_today),
+                              Gutter(scale: 0.5),
+                              Text("End Time: ", style: Get.textTheme.bodyText1),
+                              Spacer(),
+                              Text(
+                                DateFormat("dd/MM/yyyy - HH:mm").format(controller.pendingBookingOrder[index].dateTo!).toString(),
+                                style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        Gutter(),
+                        Row(
+                          children: [
+                            Icon(Icons.dashboard),
+                            Gutter(scale: 0.5),
+                            Text("Service: ", style: Get.textTheme.bodyText1),
+                            Spacer(),
+                            Text(
+                              controller.pendingBookingOrder[index].skillName.toString(),
+                              // controllerprofileController.serviceList.where((element) => element.id == controller.pendingBookingOrder[index].skillId).first.name.toString(),
+                              style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        Gutter(),
+                        Row(
+                          children: [
+                            Icon(Icons.attach_money),
+                            Gutter(scale: 0.5),
+                            Text("Total Price: ", style: Get.textTheme.bodyText1),
+                            Spacer(),
+                            Text(
+                              "\$ " + controller.pendingBookingOrder[index].price!.toStringAsFixed(2),
+                              style: Get.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        Divider(thickness: 1),
+                        if (controller.pendingBookingOrder[index].note != null) Text("Note: ", style: Get.textTheme.bodyText1),
+                        if (controller.pendingBookingOrder[index].note != null) Gutter(scale: 0.5),
+                        if (controller.pendingBookingOrder[index].note != null) Text((controller.pendingBookingOrder[index].note ?? "").toString(), style: Get.textTheme.bodyText1!.copyWith(color: Colors.grey)),
+                        if (controller.pendingBookingOrder[index].note != null) Divider(thickness: 1),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: GFButton(
+                                color: Colors.red,
+                                onPressed: () => controller.cancelOrder(controller.pendingBookingOrder[index].ordersId!),
+                                text: "Cancel",
+                              ),
+                            ),
+                            Expanded(child: SizedBox()),
+                            Expanded(
+                              child: GFButton(
+                                color: Colors.green,
+                                onPressed: () => controller.acceptOrder(controller.pendingBookingOrder[index].ordersId!),
+                                text: "Accept",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    separatorBuilder: (c, i) => Gutter(),
                   ),
                 ),
-              ],
+                separatorBuilder: (c, i) => Gutter(),
+              ),
             ),
           );
         } else {
